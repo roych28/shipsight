@@ -1,0 +1,10 @@
+{
+  "name": "shipsight",
+  "version": "0.1.0",
+  "description": "The eyes-on check of a live site after a deploy: buttons that stick out or sit too close, cut text, sideways scroll, images that did not load, JS errors, at desktop and phone widths in Chrome and Safari engines. Refuses to call a deploy done while a client would notice something.",
+  "author": { "name": "Roy Chemo", "url": "https://github.com/roych28" },
+  "homepage": "https://github.com/roych28/shipsight",
+  "repository": "https://github.com/roych28/shipsight",
+  "license": "MIT",
+  "keywords": ["deploy", "qa", "layout", "playwright", "visual", "client-sites", "freelance"]
+}

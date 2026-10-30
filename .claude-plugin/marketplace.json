@@ -1,0 +1,12 @@
+{
+  "name": "shipsight",
+  "owner": { "name": "Roy Chemo", "url": "https://github.com/roych28" },
+  "metadata": { "description": "The eyes-on check of a live site after a deploy." },
+  "plugins": [
+    {
+      "name": "shipsight",
+      "source": "./plugin",
+      "description": "Checks a live URL at desktop and phone widths, in Chrome and Safari engines, for what a client would notice: buttons out of place, cut text, sideways scroll, broken images, JS errors."
+    }
+  ]
+}

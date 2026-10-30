@@ -1,0 +1,15 @@
+{
+  "name": "shipsight",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ShipSight: the eyes-on check of a live site after a deploy. Claude Code plugin and CLI.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Roy Chemo (https://github.com/roych28)",
+  "repository": "https://github.com/roych28/shipsight",
+  "scripts": {
+    "setup": "npm --prefix plugin install && npx --prefix plugin playwright install chromium webkit",
+    "test": "node --test tests/check.test.mjs",
+    "check": "node plugin/scripts/check.mjs"
+  }
+}

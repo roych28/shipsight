@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clean page</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, sans-serif; color: #222; }
+  header { display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; border-bottom: 1px solid #ddd; }
+  main { max-width: 960px; margin: 0 auto; padding: 24px; }
+  .hero { padding: 40px 0; }
+  .actions { display: flex; gap: 16px; margin-top: 24px; flex-wrap: wrap; }
+  .btn { display: inline-block; padding: 12px 24px; min-height: 44px; background: #1b5fd9; color: #fff; border: 0; border-radius: 8px; font-size: 16px; text-decoration: none; }
+  .btn.ghost { background: #fff; color: #1b5fd9; border: 1px solid #1b5fd9; }
+  .card { border: 1px solid #ddd; border-radius: 12px; padding: 24px; margin-top: 32px; }
+  .card p { margin: 0 0 24px; }
+  footer { padding: 24px; border-top: 1px solid #ddd; margin-top: 48px; }
+  img { display: block; max-width: 100%; height: auto; }
+  .slides { position: relative; width: 320px; height: 120px; margin-top: 32px; }
+  .slides img { position: absolute; inset: 0; transition: opacity .3s; }
+  .slides img.waiting { opacity: 0; }
+  [data-reveal] { opacity: 0; transition: opacity .4s; }
+  [data-reveal].in { opacity: 1; }
+</style>
+</head>
+<body>
+<header>
+  <strong>Clean Co</strong>
+  <a class="btn ghost" href="#contact">Contact</a>
+</header>
+<main>
+  <section class="hero">
+    <h1>A page with nothing wrong</h1>
+    <p>Buttons keep their distance, text fits, nothing scrolls sideways, every picture loads.</p>
+    <div class="actions">
+      <a class="btn" href="#buy">Buy now</a>
+      <a class="btn ghost" href="#more">Learn more</a>
+    </div>
+  </section>
+  <img src="/ok.svg" width="320" height="120" alt="A grey box">
+  <div class="slides">
+    <img src="/ok.svg?slide=1" width="320" height="120" alt="Slide one">
+    <img class="waiting" src="/ok.svg?slide=2" width="320" height="120" alt="Slide two, waiting its turn">
+  </div>
+  <p data-reveal>This paragraph fades in when it scrolls into view.</p>
+  <section class="card">
+    <h2>A card</h2>
+    <p>Some text inside the card, with room before the button.</p>
+    <a class="btn" href="#card">Card action</a>
+  </section>
+</main>
+<footer id="contact">Footer text with enough room.</footer>
+<script>
+  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) e.target.classList.add('in'); }), { threshold: 0.2 });
+  document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
+</script>
+</body>
+</html>

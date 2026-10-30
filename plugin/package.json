@@ -1,0 +1,13 @@
+{
+  "name": "shipsight-plugin",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ShipSight: the eyes-on check of a live site after a deploy, for Claude Code.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Roy Chemo (https://github.com/roych28)",
+  "repository": "https://github.com/roych28/shipsight",
+  "dependencies": {
+    "playwright": "^1.63.0"
+  }
+}

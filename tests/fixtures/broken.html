@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Broken page</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, sans-serif; color: #222; }
+  main { max-width: 960px; margin: 0 auto; padding: 24px; }
+  .btn { display: inline-block; padding: 12px 24px; min-height: 44px; background: #1b5fd9; color: #fff; border: 0; border-radius: 8px; font-size: 16px; text-decoration: none; }
+  .tight { display: flex; gap: 2px; margin-top: 24px; }
+  .wide { width: 2400px; height: 20px; background: #eee; margin-top: 24px; }
+  .card { position: relative; border: 1px solid #ddd; border-radius: 12px; padding: 24px; margin-top: 48px; height: 120px; }
+  .card .btn { position: absolute; right: -60px; top: 24px; }
+  .short { min-height: 0; height: 24px; padding: 2px 12px; line-height: 20px; margin-top: 48px; }
+  .cut { width: 70px; white-space: nowrap; overflow: hidden; margin-top: 48px; }
+  .offscreen { position: absolute; left: -30px; top: 600px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>A page with everything wrong</h1>
+  <img src="/missing.png" width="320" height="120" alt="A picture that is not there">
+  <div class="tight">
+    <a class="btn" href="#buy">Buy now</a>
+    <a class="btn" href="#more">Learn more</a>
+  </div>
+  <div class="wide"></div>
+  <section class="card">
+    <h2>A card</h2>
+    <a class="btn" href="#card">Card action</a>
+  </section>
+  <a class="btn short" href="#short">Short button</a>
+  <br>
+  <a class="btn cut" href="#cut">A very long button label</a>
+  <a class="btn offscreen" href="#off">Off the edge</a>
+</main>
+<script>
+  window.addEventListener('load', function () { throw new Error('boom from the page'); });
+</script>
+</body>
+</html>
