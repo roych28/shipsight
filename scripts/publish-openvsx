@@ -1,0 +1,20 @@
+#!/bin/sh
+# Publishes the already-built .vsix of the current version to Open VSX only (Cursor, Windsurf, VSCodium users).
+# For when scripts/publish-vscode reached the Marketplace but not Open VSX. Reads OVSX_PAT from creds.txt and
+# writes everything it prints to publish-openvsx.log next to it, so the result can be read afterwards.
+set -u
+ROOT=$(cd "$(dirname "$0")/.." && pwd)
+LOG="$ROOT/publish-openvsx.log"
+OVSX_PAT=$(sed -n 's/^OVSX_PAT=//p' "$ROOT/creds.txt" | tail -1)
+if [ -z "$OVSX_PAT" ]; then echo "No OVSX_PAT in $ROOT/creds.txt" | tee "$LOG" >&2; exit 1; fi
+VERSION=$(node -p "require('$ROOT/vscode/package.json').version")
+VSIX="$ROOT/shipsight-$VERSION.vsix"
+if [ ! -f "$VSIX" ]; then
+  echo "No $VSIX, packaging it" | tee "$LOG"
+  (cd "$ROOT/vscode" && npx -y @vscode/vsce@3.2.1 package -o "$VSIX") 2>&1 | tee -a "$LOG"
+fi
+{
+  echo "== $(date -u +%Y-%m-%dT%H:%M:%SZ) publishing $VSIX to Open VSX"
+  OVSX_PAT="$OVSX_PAT" npx -y ovsx@0.10.1 publish "$VSIX"
+  echo "== exit $?"
+} 2>&1 | sed 's/[A-Za-z0-9_-]\{30,\}/***/g' | tee -a "$LOG"

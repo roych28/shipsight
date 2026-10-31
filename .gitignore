@@ -6,3 +6,4 @@ creds.txt
 runs/
 .vscode-test/
 *.vsix
+publish-openvsx.log
