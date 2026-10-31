@@ -1,4 +1,4 @@
-# ShipSight
+# ShipSight [![ci](https://github.com/roych28/shipsight/actions/workflows/ci.yml/badge.svg)](https://github.com/roych28/shipsight/actions)
 
 The eyes-on check of a live site after a deploy, for Claude Code.
 
