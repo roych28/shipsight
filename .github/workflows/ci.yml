@@ -4,7 +4,7 @@ on:
     branches: [main]
   pull_request:
 jobs:
-  test:
+  plugin:
     strategy:
       fail-fast: false
       matrix:
@@ -18,3 +18,26 @@ jobs:
       - run: npm --prefix plugin install
       - run: npx --prefix plugin playwright install --with-deps chromium webkit
       - run: npm test
+  vscode:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: vscode
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm --prefix ../plugin install
+      - run: npx --prefix ../plugin playwright install --with-deps chromium webkit
+      - run: npm ci
+      - run: npm test
+      - run: xvfb-run -a npm run test:integration
+        if: runner.os == 'Linux'
+      - run: npm run test:integration
+        if: runner.os != 'Linux'
+      - run: npx -y @vscode/vsce@3.2.1 package -o ../shipsight.vsix

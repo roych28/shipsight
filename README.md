@@ -1,6 +1,6 @@
 # ShipSight [![ci](https://github.com/roych28/shipsight/actions/workflows/ci.yml/badge.svg)](https://github.com/roych28/shipsight/actions)
 
-The eyes-on check of a live site after a deploy, for Claude Code.
+The eyes-on check of a live site after a deploy. A Claude Code plugin and a VS Code extension.
 
 A green deploy means the files uploaded. It does not mean the page your client opens looks right: a button half off its card, text cut on a phone, a page that scrolls sideways, a picture that never loaded, a JavaScript error that killed the menu. ShipSight loads the live page the way a visitor does, at desktop and phone widths, in Chrome's engine and in Safari's, scrolls it, and reports what the visitor would notice, with a screenshot of each finding.
 
@@ -16,6 +16,8 @@ In Claude Code:
 ```
 
 The first run installs Playwright and its Chromium and WebKit browsers into the plugin folder (Claude does this itself when the tool asks for it). Nothing else is installed on your machine.
+
+In VS Code, Cursor or VSCodium: install **ShipSight** from the Marketplace or Open VSX (publisher `roychemo`), then `ShipSight: Check live site` from the Command Palette or the eye in the status bar. The extension's own README is in [`vscode/`](vscode/README.md).
 
 ## Use
 
@@ -71,9 +73,10 @@ npm test
 
 The tests serve pages built to be clean and pages built to be broken from a local server, run the real checker on them, and assert the content of the report: the broken page must name every breakage with the right label, the clean page must come back clean.
 
+The extension has unit tests and an integration test that runs it inside a real VS Code against the same pages (`cd vscode && npm ci && npm test && npm run test:integration`). CI runs all of it on Ubuntu and macOS.
+
 ## Roadmap
 
-- VS Code and Open VSX extension: a "Check live site" button and the findings in a panel.
 - ShipSight Pro: a daily check of every client site from a server, real Safari, a branded PDF report in your client's language, and an alert when a page breaks.
 
 ## Privacy

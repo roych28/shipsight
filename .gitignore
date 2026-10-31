@@ -4,3 +4,5 @@ CLAUDE.local.md
 creds.txt
 .DS_Store
 runs/
+.vscode-test/
+*.vsix

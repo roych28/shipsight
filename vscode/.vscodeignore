@@ -1,0 +1,6 @@
+test/**
+node_modules/**
+scripts/sync-core.js
+.vscodeignore
+icon.svg
+.vscode-test/**

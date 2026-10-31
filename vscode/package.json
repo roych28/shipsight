@@ -1,0 +1,102 @@
+{
+  "name": "shipsight",
+  "displayName": "ShipSight: check a live site after a deploy",
+  "description": "The eyes-on check of a live site after a deploy. Loads the page in Chromium and WebKit at desktop and phone widths and reports what a client would notice: buttons out of their box or too close, cut text, sideways scroll, broken images, JS errors, failed requests. Screenshot per finding.",
+  "publisher": "roychemo",
+  "version": "0.1.0",
+  "license": "MIT",
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/roych28/shipsight"
+  },
+  "bugs": {
+    "url": "https://github.com/roych28/shipsight/issues"
+  },
+  "homepage": "https://github.com/roych28/shipsight#readme",
+  "categories": [
+    "Testing",
+    "Other"
+  ],
+  "keywords": [
+    "deploy",
+    "qa",
+    "visual",
+    "layout",
+    "responsive",
+    "playwright",
+    "safari",
+    "webkit",
+    "smoke test",
+    "vibe coding",
+    "claude code"
+  ],
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "scripts": {
+    "sync": "node scripts/sync-core.js",
+    "test": "node --test test/lib.test.js",
+    "test:integration": "node test/integration/run.js"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "shipsight.check",
+        "title": "Check live site",
+        "category": "ShipSight"
+      },
+      {
+        "command": "shipsight.checkAgain",
+        "title": "Check the last site again",
+        "category": "ShipSight"
+      },
+      {
+        "command": "shipsight.history",
+        "title": "Open a past report",
+        "category": "ShipSight"
+      },
+      {
+        "command": "shipsight.setup",
+        "title": "Install the browsers",
+        "category": "ShipSight"
+      }
+    ],
+    "configuration": {
+      "title": "ShipSight",
+      "properties": {
+        "shipsight.widths": {
+          "type": "string",
+          "default": "1440,390",
+          "markdownDescription": "Viewport widths to check, in pixels, separated by commas. Widths under 600 also run in WebKit (Safari's engine) when it is installed."
+        },
+        "shipsight.webkit": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Also check phone widths in WebKit, Safari's engine."
+        },
+        "shipsight.crawl": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "Follow same-origin links from the start page and check every page found, up to `#shipsight.maxPages#`."
+        },
+        "shipsight.maxPages": {
+          "type": "number",
+          "default": 10,
+          "minimum": 1,
+          "markdownDescription": "The most pages one crawl checks."
+        }
+      }
+    }
+  },
+  "devDependencies": {
+    "@vscode/test-electron": "3.1.0"
+  },
+  "sponsor": {
+    "url": "https://github.com/sponsors/roych28"
+  }
+}
