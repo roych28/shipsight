@@ -1,14 +1,17 @@
 #!/bin/bash
-# First publish of ShipSight to GitHub as roych28: creates the public repo, pushes main, and puts gh back on the
-# account that was active before. Run from anywhere: /Users/roychemo/Projects/shipsight/scripts/publish-github
+# First publish of ShipSight to GitHub as roych28: creates the public repo and pushes main.
+# Works from any folder: it uses the default gh config dir (where roych28 lives), not the per-project
+# GH_CONFIG_DIR that the shell sets inside ~/Projects/boat-click. Nothing global is switched.
+# Run: /Users/roychemo/Projects/shipsight/scripts/publish-github
 set -euo pipefail
 REPO=/Users/roychemo/Projects/shipsight
-PREV=$(gh auth status 2>&1 | awk '/Logged in to github.com account/ {acct=$7} /Active account: true/ {print acct; exit}')
-gh auth switch --user roych28
+export GH_CONFIG_DIR="$HOME/.config/gh"
+GH_TOKEN=$(gh auth token -u roych28)
+export GH_TOKEN
+[ "$(gh api user --jq .login)" = roych28 ] || { echo "gh is not roych28, stop"; exit 1; }
 if ! gh repo view roych28/shipsight >/dev/null 2>&1; then
   gh repo create roych28/shipsight --public --description "The eyes-on check of a live site after a deploy, for Claude Code" --disable-wiki
 fi
 git -C "$REPO" remote get-url origin >/dev/null 2>&1 || git -C "$REPO" remote add origin https://github.com/roych28/shipsight.git
-git -C "$REPO" -c credential.helper='!gh auth git-credential' push -u origin main
-[ -n "$PREV" ] && [ "$PREV" != roych28 ] && gh auth switch --user "$PREV"
+git -C "$REPO" -c credential.helper= -c credential.helper='!f() { echo username=roych28; echo "password=$GH_TOKEN"; }; f' push -u origin main
 echo "pushed: https://github.com/roych28/shipsight"
