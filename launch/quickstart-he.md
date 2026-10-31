@@ -6,14 +6,21 @@ ShipSight בודק אתר חי אחרי פריסה כמו שמבקר רואה א
 
 ## דרך 1: בתוך Claude Code (הכי נוח למי שבונה עם Claude)
 
-התקנה פעם אחת, בתוך Claude Code:
+התקנה פעם אחת. השורות שמתחילות בסלאש מוקלדות בשורת הצ'אט של סשן Claude Code פתוח, לא בטרמינל:
 
 ```
 /plugin marketplace add roych28/shipsight
 /plugin install shipsight@shipsight
 ```
 
-שימוש, בכל סשן:
+מי שמעדיף טרמינל מתקין כך, בלי להיכנס לסשן:
+
+```
+claude plugin marketplace add roych28/shipsight
+claude plugin install shipsight@shipsight
+```
+
+שימוש, בכל סשן, בשורת הצ'אט:
 
 ```
 /shipsight https://your-site.com/

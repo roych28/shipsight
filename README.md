@@ -8,12 +8,14 @@ Built for people who hand sites to clients: freelancers, small agencies, anyone 
 
 ## Install
 
-In Claude Code:
+In a Claude Code session (type these in the chat, not in a terminal):
 
 ```
 /plugin marketplace add roych28/shipsight
 /plugin install shipsight@shipsight
 ```
+
+Or from a terminal: `claude plugin marketplace add roych28/shipsight` then `claude plugin install shipsight@shipsight`.
 
 The first run installs Playwright and its Chromium and WebKit browsers into the plugin folder (Claude does this itself when the tool asks for it). Nothing else is installed on your machine.
 
