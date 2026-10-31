@@ -3,7 +3,7 @@
   "displayName": "ShipSight: check a live site after a deploy",
   "description": "The eyes-on check of a live site after a deploy. Loads the page in Chromium and WebKit at desktop and phone widths and reports what a client would notice: buttons out of their box or too close, cut text, sideways scroll, broken images, JS errors, failed requests. Screenshot per finding.",
   "publisher": "roychemo",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "icon": "icon.png",
   "repository": {
